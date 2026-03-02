@@ -54,16 +54,16 @@ This is the recommended setup for co-hosting with other projects (e.g. SandPath)
 
 ```bash
 # On your VPS
-sudo mkdir -p /var/www/hologen
+sudo mkdir -p /var/www/holopath
 
 # From your local machine
 cd frontend
 npm run build
-rsync -avz --delete dist/ you@your-server:/var/www/hologen/dist/
+rsync -avz --delete dist/ you@your-server:/var/www/holopath/dist/
 
 # Install nginx config
-sudo cp nginx.conf /etc/nginx/sites-available/hologen
-sudo ln -sf /etc/nginx/sites-available/hologen /etc/nginx/sites-enabled/
+sudo cp nginx.conf /etc/nginx/sites-available/holopath
+sudo ln -sf /etc/nginx/sites-available/holopath /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 ```
 
@@ -87,13 +87,13 @@ cd frontend && npm run build
 
 ## 3. DNS Configuration
 
-If using a custom domain (e.g. hologen.app):
+If using a custom domain (e.g. holopath.app):
 
 1. Buy domain from any registrar
 2. Create DNS records:
    - `A` → your server IP
    - `AAAA` → your server IPv6 (if available)
-   - `CNAME www` → `hologen.app`
+   - `CNAME www` → `holopath.app`
 3. Wait for propagation (~5–30 minutes)
 
 ---
@@ -102,7 +102,7 @@ If using a custom domain (e.g. hologen.app):
 
 ```bash
 sudo apt install certbot python3-certbot-nginx
-sudo certbot --nginx -d hologen.app -d www.hologen.app
+sudo certbot --nginx -d holopath.app -d www.holopath.app
 # Verify auto-renewal
 sudo certbot renew --dry-run
 ```
@@ -114,7 +114,7 @@ sudo certbot renew --dry-run
 ### Apply
 
 1. Go to [Google AdSense](https://www.google.com/adsense/)
-2. Submit `https://hologen.app`
+2. Submit `https://holopath.app`
 3. AdSense looks for: original content (5 subpages with 480–1,300 words each),
    privacy policy, terms of use, site navigation, and `ads.txt`
 
@@ -152,14 +152,14 @@ Support links are in the footer of every page:
 | Project  | Type        | Port  | Domain          |
 |----------|-------------|-------|-----------------|
 | SandPath | Backend+FE  | 8000  | sandpath.app    |
-| HoloGen  | Static only | —     | hologen.app     |
+| HoloGen  | Static only | —     | holopath.app     |
 
 HoloGen needs no port — it's purely static files served by Nginx.
 
 ### Shared VPS Checklist
 
 - [ ] Separate Nginx server blocks (sites-available/)
-- [ ] Separate document roots (`/var/www/sandpath/`, `/var/www/hologen/`)
+- [ ] Separate document roots (`/var/www/sandpath/`, `/var/www/holopath/`)
 - [ ] Separate SSL certificates (certbot handles this)
 - [ ] Separate `ads.txt` files (same pub ID is fine)
 - [ ] Separate sitemaps
@@ -218,12 +218,12 @@ ls dist/*.html
 # about.html  faq.html  how-it-works.html  index.html  privacy.html  terms.html
 
 # Deploy
-rsync -avz --delete dist/ you@server:/var/www/hologen/dist/
+rsync -avz --delete dist/ you@server:/var/www/holopath/dist/
 
 # Verify
-curl -sI https://hologen.app/ | head -3
-curl -sI https://hologen.app/about | head -3
-curl -sI https://hologen.app/faq | head -3
+curl -sI https://holopath.app/ | head -3
+curl -sI https://holopath.app/about | head -3
+curl -sI https://holopath.app/faq | head -3
 ```
 
 ---

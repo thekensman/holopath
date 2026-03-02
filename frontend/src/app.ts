@@ -645,7 +645,7 @@ generateBtn.addEventListener("click", doGenerate);
 // ─── Download ───────────────────────────────────────────────
 
 downloadBtn.addEventListener("click", () => {
-  if (lastGifUrl) triggerDownload(lastGifUrl, `hologen-output.${lastDownloadExt}`);
+  if (lastGifUrl) triggerDownload(lastGifUrl, `holopath-output.${lastDownloadExt}`);
 });
 
 // ─── Stats display ──────────────────────────────────────────

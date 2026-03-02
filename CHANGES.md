@@ -135,11 +135,11 @@ config on a site with no client-side router.
 ## Deployment
 
 ```bash
-tar xzf hologen-project.tar.gz
-cd hologen/frontend
+tar xzf holopath-project.tar.gz
+cd holopath/frontend
 npm install
 npm run build
 # Copy dist/ + public/ assets to web server
-rsync -avz --delete dist/ server:/var/www/hologen/dist/
-rsync -avz public/*.png public/*.css public/*.html server:/var/www/hologen/
+rsync -avz --delete dist/ server:/var/www/holopath/dist/
+rsync -avz public/*.png public/*.css public/*.html server:/var/www/holopath/
 ```

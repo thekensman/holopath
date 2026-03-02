@@ -1,5 +1,5 @@
 /**
- * HoloGen — GIF89a decoder (client-side).
+ * HoloPath — GIF89a decoder (client-side).
  *
  * Parses animated GIF binary into individual RGBA frames,
  * handling disposal methods, transparency, and local colour tables.
@@ -174,7 +174,8 @@ function lzwDecode(compressed: Uint8Array, minCodeSize: number, pixelCount: numb
       dict.push(newEntry);
       dictSize++;
 
-      if (dictSize > (1 << codeSize) && codeSize < 12) {
+      // Early change: compatible with most external GIF encoders
+      if (dictSize >= (1 << codeSize) && codeSize < 12) {
         codeSize++;
       }
     }
