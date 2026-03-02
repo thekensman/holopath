@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How It Works — HoloPath | Hologram Effects &amp; Display Guide</title>
   <meta name="description" content="Learn how HoloPath transforms images into hologram GIFs. Understand the 13-stage rendering pipeline, 5 output layouts, and how to set up DIY hologram displays at home." />
-  <link rel="canonical" href="https://holopath.art/how-it-works" />
+  <link rel="canonical" href="https://holopath.app/how-it-works" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="How It Works — HoloPath" />
   <meta property="og:description" content="Learn how HoloPath creates hologram GIFs and how to set up DIY hologram displays." />
-  <meta property="og:url" content="https://holopath.art/how-it-works" />
+  <meta property="og:url" content="https://holopath.app/how-it-works" />
   <meta property="og:site_name" content="HoloPath" />
-  <meta property="og:image" content="https://holopath.art/og-image.png" />
+  <meta property="og:image" content="https://holopath.app/og-image.png" />
   <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -61,7 +61,7 @@
 
       <p><strong>Videos</strong> (MP4, WebM, MOV) are decoded by the browser's built-in HTML5
       video decoder. Frames are extracted at 10fps by seeking through the video and capturing
-      each frame to a Canvas element, capped at 300 frames (30 seconds max). Each extracted
+      each frame to a Canvas element, capped at 900 frames for browser memory safety. Each extracted
       frame is fed into the hologram pipeline individually. No server upload is required —
       your video never leaves your device.</p>
 
