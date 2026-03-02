@@ -1,5 +1,5 @@
 /**
- * HoloPath — Video encoder (client-side).
+ * HoloGen — Video encoder (client-side).
  *
  * Encodes rendered hologram frames to MP4 or WebM using
  * the browser's MediaRecorder API + Canvas captureStream.

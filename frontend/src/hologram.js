@@ -1,5 +1,5 @@
 /**
- * HoloPath — Hologram rendering engine (client-side).
+ * HoloGen — Hologram rendering engine (client-side).
  *
  * Applies holographic visual effects to image frames using
  * Canvas ImageData pixel manipulation. All processing in-browser.

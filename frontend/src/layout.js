@@ -1,5 +1,5 @@
 /**
- * HoloPath — Layout compositor (client-side).
+ * HoloGen — Layout compositor (client-side).
  *
  * Supports 5 output layouts for different hologram hardware:
  *   pyramid4      — 4 copies for 4-sided glass pyramid (360°)

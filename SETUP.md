@@ -1,4 +1,4 @@
-# HoloPath — Setup & Deployment Guide
+# HoloGen — Setup & Deployment Guide
 
 **Architecture:** Fully client-side. All hologram rendering, GIF/video encoding, and media
 parsing runs in the browser via JavaScript and Canvas 2D. No backend server, no Python,
@@ -45,7 +45,7 @@ ls dist/
 
 ## 2. Production Deployment
 
-HoloPath is a static site. Deploy it anywhere: Nginx, Caddy, Cloudflare Pages,
+HoloGen is a static site. Deploy it anywhere: Nginx, Caddy, Cloudflare Pages,
 Netlify, Vercel, GitHub Pages, S3 + CloudFront, etc.
 
 ### Option A: VPS with Nginx
@@ -54,16 +54,16 @@ This is the recommended setup for co-hosting with other projects (e.g. SandPath)
 
 ```bash
 # On your VPS
-sudo mkdir -p /var/www/holopath
+sudo mkdir -p /var/www/hologen
 
 # From your local machine
 cd frontend
 npm run build
-rsync -avz --delete dist/ you@your-server:/var/www/holopath/dist/
+rsync -avz --delete dist/ you@your-server:/var/www/hologen/dist/
 
 # Install nginx config
-sudo cp nginx.conf /etc/nginx/sites-available/holopath
-sudo ln -sf /etc/nginx/sites-available/holopath /etc/nginx/sites-enabled/
+sudo cp nginx.conf /etc/nginx/sites-available/hologen
+sudo ln -sf /etc/nginx/sites-available/hologen /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 ```
 
@@ -87,13 +87,13 @@ cd frontend && npm run build
 
 ## 3. DNS Configuration
 
-If using a custom domain (e.g. holopath.art):
+If using a custom domain (e.g. hologen.app):
 
 1. Buy domain from any registrar
 2. Create DNS records:
    - `A` → your server IP
    - `AAAA` → your server IPv6 (if available)
-   - `CNAME www` → `holopath.art`
+   - `CNAME www` → `hologen.app`
 3. Wait for propagation (~5–30 minutes)
 
 ---
@@ -102,7 +102,7 @@ If using a custom domain (e.g. holopath.art):
 
 ```bash
 sudo apt install certbot python3-certbot-nginx
-sudo certbot --nginx -d holopath.art -d www.holopath.art
+sudo certbot --nginx -d hologen.app -d www.hologen.app
 # Verify auto-renewal
 sudo certbot renew --dry-run
 ```
@@ -114,7 +114,7 @@ sudo certbot renew --dry-run
 ### Apply
 
 1. Go to [Google AdSense](https://www.google.com/adsense/)
-2. Submit `https://holopath.art`
+2. Submit `https://hologen.app`
 3. AdSense looks for: original content (5 subpages with 480–1,300 words each),
    privacy policy, terms of use, site navigation, and `ads.txt`
 
@@ -152,14 +152,14 @@ Support links are in the footer of every page:
 | Project  | Type        | Port  | Domain          |
 |----------|-------------|-------|-----------------|
 | SandPath | Backend+FE  | 8000  | sandpath.app    |
-| HoloPath  | Static only | —     | holopath.art     |
+| HoloGen  | Static only | —     | hologen.app     |
 
-HoloPath needs no port — it's purely static files served by Nginx.
+HoloGen needs no port — it's purely static files served by Nginx.
 
 ### Shared VPS Checklist
 
 - [ ] Separate Nginx server blocks (sites-available/)
-- [ ] Separate document roots (`/var/www/sandpath/`, `/var/www/holopath/`)
+- [ ] Separate document roots (`/var/www/sandpath/`, `/var/www/hologen/`)
 - [ ] Separate SSL certificates (certbot handles this)
 - [ ] Separate `ads.txt` files (same pub ID is fine)
 - [ ] Separate sitemaps
@@ -218,12 +218,12 @@ ls dist/*.html
 # about.html  faq.html  how-it-works.html  index.html  privacy.html  terms.html
 
 # Deploy
-rsync -avz --delete dist/ you@server:/var/www/holopath/dist/
+rsync -avz --delete dist/ you@server:/var/www/hologen/dist/
 
 # Verify
-curl -sI https://holopath.art/ | head -3
-curl -sI https://holopath.art/about | head -3
-curl -sI https://holopath.art/faq | head -3
+curl -sI https://hologen.app/ | head -3
+curl -sI https://hologen.app/about | head -3
+curl -sI https://hologen.app/faq | head -3
 ```
 
 ---

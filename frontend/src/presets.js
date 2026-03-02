@@ -1,5 +1,5 @@
 /**
- * HoloPath — Hologram effect presets.
+ * HoloGen — Hologram effect presets.
  *
  * Each preset defines a complete set of effect parameters that
  * produce a distinct holographic visual style. All values are

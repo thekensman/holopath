@@ -1,5 +1,5 @@
 /**
- * HoloPath — GIF89a encoder (client-side).
+ * HoloGen — GIF89a encoder (client-side).
  *
  * Encodes ImageData frames into an animated GIF with:
  *   - Median-cut colour quantisation (256 colours)

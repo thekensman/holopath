@@ -1,5 +1,5 @@
 /**
- * HoloPath — Frontend application (fully client-side).
+ * HoloGen — Frontend application (fully client-side).
  *
  * Upload an image, GIF, or video → select preset → tweak effects
  * → choose layout → real-time animated preview → generate GIF.
@@ -559,7 +559,7 @@ generateBtn.addEventListener("click", doGenerate);
 // ─── Download ───────────────────────────────────────────────
 downloadBtn.addEventListener("click", () => {
     if (lastGifUrl)
-        triggerDownload(lastGifUrl, `holopath-output.${lastDownloadExt}`);
+        triggerDownload(lastGifUrl, `hologen-output.${lastDownloadExt}`);
 });
 // ─── Stats display ──────────────────────────────────────────
 const LAYOUT_LABELS = {

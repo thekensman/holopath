@@ -1,4 +1,4 @@
-# HoloPath — Changes (March 2026)
+# HoloGen — Changes (March 2026)
 
 ## Critical: GIF Encoder LZW Fix
 
@@ -13,17 +13,9 @@ error cascaded through the entire frame, producing garbage pixel indices that ma
 black palette entries.
 
 **Fix:** `gif-encoder.ts` line 216: `nextCode > (1 << codeSize)` — encoder uses deferred
-change (`>`) which is what browsers and PIL expect for decoding. `gif-decoder.ts` line 177:
-`dictSize >= (1 << codeSize)` — decoder uses early change (`>=`) which is what most
-external GIF encoders use. These intentionally differ because they serve different roles:
-the encoder creates output GIFs decoded by the browser's built-in decoder, while the
-custom decoder only reads externally-produced GIFs uploaded by users. A browser-native
-fallback in `media-parser.ts` catches any remaining edge cases.
-
-**Verified:** The cartoon GIF input (800×600, 31 frames, disposal=1 with transparency)
-decoded 0/480000 pixels with `>` but 480000/480000 pixels with `>=`. The `>` decoder
-truncated at 32768 pixels because it fell out of sync with the external encoder's
-bit-width timing.
+change (`>`). `gif-decoder.ts` line 177: `dictSize > (1 << codeSize)` — decoder also uses
+deferred change to stay in sync with our encoder and standard encoders. A browser-native
+fallback in `media-parser.ts` catches any external GIFs that use the alternate convention.
 
 **Files:** `gif-encoder.ts`, `gif-decoder.ts`, `media-parser.ts`
 
@@ -143,22 +135,11 @@ config on a site with no client-side router.
 ## Deployment
 
 ```bash
-tar xzf holopath-project.tar.gz
-cd holopath/frontend
+tar xzf hologen-project.tar.gz
+cd hologen/frontend
 npm install
 npm run build
 # Copy dist/ + public/ assets to web server
-rsync -avz --delete dist/ server:/var/www/holopath/dist/
-rsync -avz public/*.png public/*.css public/*.html server:/var/www/holopath/
+rsync -avz --delete dist/ server:/var/www/hologen/dist/
+rsync -avz public/*.png public/*.css public/*.html server:/var/www/hologen/
 ```
-
----
-
-## Rebrand: HoloGen → HoloPath
-
-All references updated across 164 occurrences: source files, HTML pages, meta tags, OG
-image, nginx conf, documentation, canonical URLs, and sessionStorage keys. Domain updated
-from `hologen.app` to `holopath.art`. OG social preview image regenerated with
-"HOLO::PATH" title.
-
-**Files:** All HTML, CSS, TS, JSON, MD, conf, and PNG files.

@@ -1,4 +1,4 @@
-# HoloPath — Hologram GIF Generator
+# HoloGen — Hologram GIF Generator
 
 Transform any image, GIF, or video into a stunning animated hologram.
 **100% client-side** — all processing runs in your browser. No server needed.
