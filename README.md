@@ -22,6 +22,11 @@ npm run dev
 
 Open `http://localhost:5173`.
 
+## Example
+
+![Input](https://i.pinimg.com/originals/44/cd/5c/44cd5c933fd7f148bb534ab2510c1032.gif)
+![Output](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjd0N24zcmE0MjY1d2E4MTBxbzgxeHY0aGRxZDNudDl6dDRuZzQ4diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QBZVsTzBOEXsdJEDJJ/giphy.gif)
+
 ## Tech Stack
 
 - **TypeScript / Vite** — build tooling
