@@ -13,9 +13,8 @@ import { decodeGif, isAnimatedGif } from "./gif-decoder";
 export const IMG_EXTS = new Set([".jpg", ".jpeg", ".png", ".webp", ".bmp", ".gif"]);
 export const VID_EXTS = new Set([".mp4", ".webm", ".mov", ".m4v", ".ogg"]);
 export const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15 MB
-const MAX_VIDEO_DURATION = 30; // seconds
 const TARGET_VIDEO_FPS = 10;
-const MAX_VIDEO_FRAMES = 300;
+const MAX_VIDEO_FRAMES = 900; // ~90s at 10fps; browser memory is the real limit
 // ─── Source detection ───────────────────────────────
 export function getExt(filename) {
     return "." + (filename.split(".").pop()?.toLowerCase() || "");
@@ -216,9 +215,6 @@ async function parseVideo(file, maxWidth, onProgress) {
         const duration = video.duration;
         if (!isFinite(duration) || duration <= 0) {
             throw new Error("Cannot determine video duration");
-        }
-        if (duration > MAX_VIDEO_DURATION) {
-            throw new Error(`Video too long (${duration.toFixed(1)}s). Maximum is ${MAX_VIDEO_DURATION}s.`);
         }
         const fps = TARGET_VIDEO_FPS;
         let numFrames = Math.min(Math.round(duration * fps), MAX_VIDEO_FRAMES);
