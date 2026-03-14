@@ -324,12 +324,13 @@ export function renderHoloFrame(
   }
 
   // ─── Output ImageData ───
+  const brightness = preset.brightness ?? 1.0;
   const out = new ImageData(w, h);
   const od = out.data;
   for (let i = 0; i < w * h; i++) {
-    od[i * 4]     = Math.max(0, Math.min(255, Math.round(resR[i])));
-    od[i * 4 + 1] = Math.max(0, Math.min(255, Math.round(resG[i])));
-    od[i * 4 + 2] = Math.max(0, Math.min(255, Math.round(resB[i])));
+    od[i * 4]     = Math.max(0, Math.min(255, Math.round(resR[i] * brightness)));
+    od[i * 4 + 1] = Math.max(0, Math.min(255, Math.round(resG[i] * brightness)));
+    od[i * 4 + 2] = Math.max(0, Math.min(255, Math.round(resB[i] * brightness)));
     od[i * 4 + 3] = 255;
   }
   return out;

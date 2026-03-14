@@ -109,6 +109,7 @@ function triggerDownload(url: string, filename: string) {
 // ─── Get current preset from UI sliders ─────────────────────
 
 function getCurrentPreset(): HoloPreset {
+  const rawBrightness = parseInt(($<HTMLInputElement>("#brightness")).value);
   return {
     id: activePresetId,
     name: PRESETS[activePresetId]?.name || "Custom",
@@ -120,6 +121,7 @@ function getCurrentPreset(): HoloPreset {
     noise:       parseInt(($<HTMLInputElement>("#noise")).value) / 100,
     color_shift: parseInt(($<HTMLInputElement>("#color-shift")).value) / 100,
     edge_detect: parseInt(($<HTMLInputElement>("#edge-detect")).value) / 100,
+    brightness:  0.5 + (rawBrightness / 100) * 1.5,  // maps 0–100 → 0.5–2.0
     hue:         ($<HTMLSelectElement>("#hue-select")).value,
     grid:        ($<HTMLInputElement>("#grid-overlay")).checked,
     chromatic_aberration: ($<HTMLInputElement>("#chrom-aberration")).checked,
@@ -178,6 +180,7 @@ const SLIDERS: [string, string, boolean][] = [
   ["noise", "val-noise", true],
   ["color-shift", "val-shift", true],
   ["edge-detect", "val-edge", true],
+  ["brightness", "val-brightness", true],
   ["frame-count", "val-frames", false],
   ["speed", "val-speed", false],
 ];
@@ -268,6 +271,8 @@ function applyPreset(p: HoloPreset) {
   setSlider("noise", Math.round(p.noise * 100));
   setSlider("color-shift", Math.round(p.color_shift * 100));
   setSlider("edge-detect", Math.round(p.edge_detect * 100));
+  // brightness: maps 0.5–2.0 → 0–100
+  setSlider("brightness", Math.round(((p.brightness - 0.5) / 1.5) * 100));
 
   ($<HTMLSelectElement>("#hue-select")).value = p.hue;
   ($<HTMLInputElement>("#grid-overlay")).checked = p.grid;

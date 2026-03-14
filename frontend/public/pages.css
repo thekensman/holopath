@@ -43,23 +43,29 @@ a:hover { color: #fff; text-shadow: 0 0 8px var(--cyan); }
 .site-nav {
   display: flex;
   justify-content: center;
-  gap: 0.3rem;
-  padding: 0.6rem 1rem;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.65rem 1rem;
   background: var(--dark-raised);
-  border-bottom: 1px solid rgba(0, 255, 242, 0.1);
+  border-bottom: 1px solid rgba(0, 255, 242, 0.12);
   flex-wrap: wrap;
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
 }
 .site-nav__link {
   color: var(--text-muted);
   text-decoration: none;
   font-size: 0.82rem;
-  padding: 0.3rem 0.65rem;
+  padding: 0.45rem 0.75rem;
   border-radius: 4px;
   transition: color 0.2s, background 0.2s;
   letter-spacing: 0.02em;
+  white-space: nowrap;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
 }
 .site-nav__link:hover {
   color: var(--cyan);
@@ -69,6 +75,17 @@ a:hover { color: #fff; text-shadow: 0 0 8px var(--cyan); }
 .site-nav__link--active {
   color: var(--cyan);
   background: rgba(0, 255, 242, 0.1);
+}
+
+@media (max-width: 480px) {
+  .site-nav {
+    gap: 0.15rem;
+    padding: 0.5rem 0.5rem;
+  }
+  .site-nav__link {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.5rem;
+  }
 }
 
 /* ─── Page Content ─── */
