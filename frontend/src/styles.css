@@ -70,11 +70,17 @@ body::after {
 .nav {
   display: flex;
   justify-content: center;
-  gap: 0.3rem;
-  padding: 0.6rem 1rem;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.65rem 1rem;
   border-bottom: 1px solid var(--border);
   margin-bottom: 20px;
   flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--dark);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
 }
 
 .nav__link {
@@ -83,9 +89,13 @@ body::after {
   text-decoration: none;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  padding: 0.3rem 0.65rem;
+  padding: 0.45rem 0.75rem;
   border-radius: 4px;
   transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav__link:hover {
@@ -96,6 +106,18 @@ body::after {
 .nav__link--active {
   color: var(--cyan);
   background: rgba(0,255,242,0.1);
+}
+
+@media (max-width: 480px) {
+  .nav {
+    gap: 0.15rem;
+    padding: 0.5rem 0.5rem;
+  }
+  .nav__link {
+    font-size: 0.68rem;
+    padding: 0.4rem 0.5rem;
+    letter-spacing: 1px;
+  }
 }
 
 /* ─── Layout ─── */
